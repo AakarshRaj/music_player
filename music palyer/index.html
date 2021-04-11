@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e990645614.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="musicplayer">
+            <h2 id="title">ALAN WALKER</h2>
+            <img src="images\Alan Walker-Faded.jpg" class="musicimg">
+            <audio src="music\Alan Walker-Faded.mp3"></audio>
+            <div class="nav">
+                <i class="fas fa-backward fa-2x" title="backward" id="backward"></i>
+                <i class="fas fa-play fa-1x" id="play" title="Play"></i>
+                <i class="fas fa-forward fa-2x" title="forward" id="forward"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- script starts from here -->
+
+    <script>
+        const music = document.querySelector("audio");
+        const img = document.querySelector("img");
+        const play = document.getElementById("play");
+        const title = document.getElementById("title");
+        const backward = document.getElementById("backward");
+        const forward = document.getElementById("forward");
+        let isplaying = false;
+
+        // songs object array 
+
+        const songs = [
+            {
+                name: "Alan Walker-Faded",
+                title: "Alan Walker",
+            },
+            {
+                name: "Marshmello-Alone",
+                title: "Marshmello",
+            },
+            {
+                name: "Sugar & Brownies-Dharia",
+                title: "Sugar and Brownies",
+            }
+        ];
+
+        // for play function 
+        const playMusic = () => {
+            isplaying = true;
+            music.play();
+            play.classList.replace('fa-play', 'fa-pause');
+            img.classList.add("imgrotate");
+            // music.playbackRate = 4;
+        };
+
+        // for pause function 
+        const pauseMusic = () => {
+            isplaying = false;
+            music.pause();
+            play.classList.replace('fa-pause', 'fa-play');
+            img.classList.remove("imgrotate");
+        };
+
+        play.addEventListener('click', () => {
+            if (isplaying) {
+                pauseMusic();
+            }
+            else {
+                playMusic()
+            }
+        });
+
+        // changing the music Data
+
+        const loadSongs = (songs) => { 
+            title.textContent = songs.title;
+            music.src = "music/" + songs.name + ".mp3";
+            img.src = "images/" + songs.name + ".jpg";
+        };
+
+        songIndex = 0;
+        // loadSongs(songs[2]);
+
+        const forwardSong = () => {
+            // songIndex++;
+            songIndex = (songIndex + 1) % songs.length;
+            loadSongs(songs[songIndex]);
+            playMusic();
+        };
+        
+        const prevSong = () => {
+            // songIndex++;
+            songIndex = (songIndex - 1 + songs.length) % songs.length;
+            loadSongs(songs[songIndex]);
+            playMusic();
+        }
+        forward.addEventListener("click", forwardSong);
+        backward.addEventListener('click', prevSong);
+        music.onended = forwardSong;
+
+    </script>
+</body>
+
+</html>
