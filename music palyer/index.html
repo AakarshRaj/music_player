@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="refresh" content="1"> -->
     <title>Music Player</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e990645614.js" crossorigin="anonymous"></script>
 </head>
 
@@ -19,13 +18,36 @@
             <h2 id="title">ALAN WALKER</h2>
             <img src="images\Alan Walker-Faded.jpg" class="musicimg">
             <audio src="music\Alan Walker-Faded.mp3"></audio>
+
+            <!-- progress bar -->
+            <div class="progressbar_container">
+                <div class="progress_duration_meter">
+                    <div id="current_time">0:00</div>
+                    <div id="duration">2:44</div>
+                </div>
+                <div class="progress_div" id="progress_div">
+                    <div class="progress" id="progress">
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <div class="nav">
-                <i class="fas fa-backward fa-2x" title="backward" id="backward"></i>
+                <!-- i think due to fontawesome there was some problem in code so i added img instead of fontawesome   -->
+
+                <!-- <i class="fas fa-backward fa-2x" title="backward" id="backward"></i>
                 <i class="fas fa-play fa-1x" id="play" title="Play"></i>
-                <i class="fas fa-forward fa-2x" title="forward" id="forward"></i>
+                <i class="fas fa-forward fa-2x" title="forward" id="forward"></i> -->
+                <img src="backward.png" id="backward">
+                <img src="play.png" id="play" class="play">
+                <img src="forward.png" id="forward">
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
